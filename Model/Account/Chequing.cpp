@@ -3,3 +3,12 @@
 //
 
 #include "Chequing.h"
+
+Chequing::Chequing(int cBalance) {
+    balance = cBalance;
+    accountType = Account::AccountType::Chequing;
+}
+
+Chequing::~Chequing() {
+
+}

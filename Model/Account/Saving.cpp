@@ -3,3 +3,12 @@
 //
 
 #include "Saving.h"
+
+Saving::Saving(int sBalance) {
+    balance = sBalance;
+    accountType = Account::AccountType::Saving;
+}
+
+Saving::~Saving() {
+
+}

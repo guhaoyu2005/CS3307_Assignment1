@@ -9,12 +9,13 @@
 
 Person::Person() {
     Logger::sharedInstance().logwt("Person created.");
+
 }
 
 Person::~Person() {
 
 }
 
-Person Person::create(const char *, const char *, personType) {
+Person Person::create(const char *id, const char *pwd, personType) {
 
 }

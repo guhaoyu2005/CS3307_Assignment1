@@ -7,7 +7,7 @@
 
 #include "Person.h"
 
-class Client : private Person {
+class Client : protected Person {
 public:
 
 };

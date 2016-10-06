@@ -7,7 +7,11 @@
 
 #include "Account.h"
 
-class Chequing : private Account {
+class Chequing : public Account {
+
+public:
+    Chequing(int);
+    ~Chequing();
 
 };
 

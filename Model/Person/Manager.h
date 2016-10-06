@@ -6,8 +6,19 @@
 #define BANK_MANAGER_H
 
 #include "Person.h"
+#include "Client.h"
 
-class Manager : private Person {
+class Manager : protected Person {
+public:
+    Manager();
+    ~Manager();
+
+private:
+    bool createClient(const char *, const char *);
+    bool createChquingForClient(Client *);
+    bool createSavingForClient(Client *);
+    std::vector<Account>& listClientAccounts(Client *);
+    bool deleteClientAccount(Client *, int);
 
 };
 

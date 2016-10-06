@@ -7,8 +7,11 @@
 
 #include "Account.h"
 
-class Saving : private Account {
+class Saving : public Account {
 
+public:
+    Saving(int);
+    ~Saving();
 };
 
 
