@@ -1,6 +1,10 @@
-#include <iostream>
+#include "Utils/headers.h"
+#include "Utils/sharedLib.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Bank" << std::endl;
+    Logger::sharedInstance().setTraceMode(true);
+    Logger::sharedInstance().logwt("System initialized.");
+
     return 0;
 }
