@@ -10,7 +10,7 @@
 class Saving : public Account {
 
 public:
-    Saving(int);
+    Saving(int, bool);
     ~Saving();
 };
 

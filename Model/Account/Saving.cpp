@@ -4,8 +4,9 @@
 
 #include "Saving.h"
 
-Saving::Saving(int sBalance) {
+Saving::Saving(int sBalance, bool open) {
     balance = sBalance;
+    states = open;
     accountType = Account::AccountType::Saving;
 }
 

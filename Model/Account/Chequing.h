@@ -10,7 +10,7 @@
 class Chequing : public Account {
 
 public:
-    Chequing(int);
+    Chequing(int, bool);
     ~Chequing();
 
 };

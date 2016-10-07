@@ -8,7 +8,6 @@
 #include "../../Utils/constants.h"
 
 Person::Person() {
-    Logger::sharedInstance().logwt("Person created.");
 
 }
 
@@ -16,6 +15,8 @@ Person::~Person() {
 
 }
 
-Person Person::create(const char *id, const char *pwd, personType) {
+/*
+Person create(std::string& uid, std::string& pwd, Person::personType type) {
 
 }
+ */

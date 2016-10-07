@@ -22,11 +22,14 @@ public:
     bool deposit(int, std::string&);
     bool withdraw(int, std::string&);
     bool transfer(Account*, int, std::string&);
+    bool isOpen();
+    bool open(std::string&);
+    bool close(std::string&);
 
 protected:
     int balance;
     AccountType accountType;
-
+    bool states;
 };
 
 

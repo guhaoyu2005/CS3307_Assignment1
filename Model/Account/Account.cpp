@@ -6,6 +6,7 @@
 
 Account::Account() {
     balance = 0;
+    states = 0;
     accountType = Account::AccountType::Unknown;
 }
 
@@ -17,11 +18,48 @@ int Account::getBalance() {
     return balance;
 }
 
+bool Account::open(std::string& errMsg) {
+    if (!states) {
+        balance = 0;
+        states = true;
+        return true;
+    }
+    else {
+        errMsg = "Account already exists.";
+        return false;
+    }
+}
+
+bool Account::close(std::string& errMsg) {
+    if (states) {
+        if (balance==0) {
+            states = false;
+            return true;
+        }
+        else {
+            errMsg = "Account balance is not 0.";
+            return false;
+        }
+    }
+    else {
+        errMsg = "Account doesn't exist.";
+        return false;
+    }
+}
+
+bool Account::isOpen() {
+    return states;
+}
+
 Account::AccountType Account::getType() {
     return accountType;
 }
 
 bool Account::deposit(int amount, std::string &errMsg) {
+    if (!states) {
+        errMsg = "This account doesn't exist.";
+        return false;
+    }
     int verify = balance;
     balance+=amount;
     if (balance == verify+amount){
@@ -35,6 +73,10 @@ bool Account::deposit(int amount, std::string &errMsg) {
 }
 
 bool Account::withdraw(int amount, std::string &errMsg) {
+    if (!states) {
+        errMsg = "This account doesn't exist.";
+        return false;
+    }
     if (amount<=balance) {
         int verify = balance;
         balance-=amount;
@@ -53,6 +95,10 @@ bool Account::withdraw(int amount, std::string &errMsg) {
 }
 
 bool Account::transfer(Account* destAccount, int amount, std::string &errMsg) {
+    if (!states) {
+        errMsg = "This account doesn't exist.";
+        return false;
+    }
     if (destAccount) {
         if (balance>= amount) {
             int verifySelf = balance;

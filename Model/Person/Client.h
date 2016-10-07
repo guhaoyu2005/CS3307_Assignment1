@@ -9,7 +9,27 @@
 
 class Client : protected Person {
 public:
+    Client(std::string& , std::string&);
+    ~Client();
 
+public:
+    bool writeToFile();
+
+public:
+    static Client* readFromFile(std::string&);
+
+public:
+    bool createAccount(Account::AccountType, std::string&);
+    bool deleteAccount(Account::AccountType, std::string&);
+
+    void addTransaction(std::string);
+
+    int getSummaryBalance();
+
+public:
+    std::vector<std::string> transactions;
+    Chequing *chequing;
+    Saving *saving;
 };
 
 

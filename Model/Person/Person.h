@@ -7,21 +7,20 @@
 
 #include "../../Utils/constants.h"
 #include <vector>
+#include <string>
 #include "../Account/Account.h"
 #include "../Account/Chequing.h"
 #include "../Account/Saving.h"
 
 class Person {
-    enum personType {manager, client, service, unknown};
-
-protected:
-    char id[MAX_USER_ID_LENGTH];
-    char password[MAX_USER_PWD_LENGTH];
-    personType type;
-    std::vector<Account> accounts;
 
 public:
-    Person create(const char *, const char *, personType);
+    enum PersonType {manager = 0, client, service, unknown};
+
+public:
+    std::string uid;
+    std::string password;
+    PersonType type;
 
 public:
     Person();

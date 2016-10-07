@@ -5,7 +5,9 @@
 #ifndef BANK_SHAREDLIB_H
 #define BANK_SHAREDLIB_H
 
-#include "../Model/Person/Person.h"
+#include "../Model/Person/Client.h"
+#include "../Model/Person/Manager.h"
+#include "../Model/Person/Service.h"
 
 
 

@@ -4,8 +4,9 @@
 
 #include "Chequing.h"
 
-Chequing::Chequing(int cBalance) {
+Chequing::Chequing(int cBalance, bool open) {
     balance = cBalance;
+    states = open;
     accountType = Account::AccountType::Chequing;
 }
 
