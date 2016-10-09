@@ -11,10 +11,8 @@
 
 using namespace std;
 
-Manager *manager;
-
 ManagerUIController::ManagerUIController() {
-
+    manager = NULL;
 }
 
 ManagerUIController::~ManagerUIController() {
@@ -218,7 +216,7 @@ void ManagerUIController::closeAccount() {
     }
 }
 
-void drawMainMenu () {
+void ManagerUIController::drawMainMenu () {
     system("cls");
     cout<<" ===[ ]==============Main Menu================="<<endl;
     cout<<"|                                              |"<<endl;

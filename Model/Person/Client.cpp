@@ -5,7 +5,7 @@
 #include "Client.h"
 #include "../../Utils/headers.h"
 
-Client::Client(std::string& id, std::string& pwd) {
+Client::Client(std::string id, std::string pwd) {
     uid = id;
     password = pwd;
     chequing = new Chequing(0, 0);
@@ -92,7 +92,7 @@ int Client::getSummaryBalance() {
     return (chequing->isOpen()?chequing->getBalance():0)+(saving->isOpen()?saving->getBalance():0);
 }
 
-Client* Client::readFromFile(std::string& id) {
+Client* Client::readFromFile(std::string id) {
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     std::string userId;

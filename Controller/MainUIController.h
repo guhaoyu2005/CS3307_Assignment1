@@ -5,6 +5,7 @@
 #ifndef CS3307_ASSIGNMENT1_MAINUICONTROLLER_H
 #define CS3307_ASSIGNMENT1_MAINUICONTROLLER_H
 
+#include "../Model/Person/Person.h"
 
 class MainUIController {
 
@@ -17,6 +18,9 @@ public:
 
 private:
     void loadMainMenu();
+
+private:
+    Person *user;
 };
 
 

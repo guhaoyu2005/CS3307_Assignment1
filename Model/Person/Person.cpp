@@ -15,7 +15,7 @@ Person::~Person() {
 
 }
 
-Person* Person::readFromFile(std::string& id) {
+Person* Person::readFromFile(std::string id) {
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     std::string userId;
@@ -30,7 +30,7 @@ Person* Person::readFromFile(std::string& id) {
     return instance;
 }
 
-bool Person::isExist(std::string& id) {
+bool Person::isExist(std::string id) {
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     if (!in) {
@@ -38,6 +38,21 @@ bool Person::isExist(std::string& id) {
     }
     in.close();
     return true;
+}
+
+Person::PersonType Person::whichType(std::string id) {
+    std::ifstream in;
+    in.open("./Data/"+id+".uif");
+    if (!in) {
+        return PersonType::unknown;
+    }
+    else {
+        int t;
+        std::string a,b;
+        in>>a>>b>>t;
+        in.close();
+        return (PersonType)t;
+    }
 }
 
 /*

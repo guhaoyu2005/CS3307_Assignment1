@@ -6,6 +6,7 @@
 #define CS3307_ASSIGNMENT1_MANAGERUICONTROLLER_H
 
 #include <string>
+#include "../Model/Person/Manager.h"
 
 class ManagerUIController {
 public:
@@ -15,10 +16,14 @@ public:
 public:
     void init(std::string);
 private:
+    void drawMainMenu();
     void showClients();
     void createClient();
     void openAccount();
     void closeAccount();
+
+private:
+    Manager *manager;
 };
 
 

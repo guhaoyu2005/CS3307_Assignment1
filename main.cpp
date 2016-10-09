@@ -52,10 +52,11 @@ int main() {
     std::cout << "Bank" << std::endl;
     Logger::sharedInstance().setTraceMode(true);
     Logger::sharedInstance().logwt("System initialized.");
-    MainUIController *ui = new MainUIController();
     while (1) {
+        MainUIController *ui = new MainUIController();
         ui->init();
         delete ui;
+        ui = NULL;
     }
 
 /*

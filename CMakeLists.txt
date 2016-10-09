@@ -23,6 +23,6 @@ set(SOURCE_FILES
     Utils/Logger.cpp
     Utils/Logger.h
     Utils/sharedLib.h
-    main.cpp Utils/sharedLib.cpp Controller/MainUIController.cpp Controller/MainUIController.h Controller/LoginUIController.cpp Controller/LoginUIController.h Controller/ManagerUIController.cpp Controller/ManagerUIController.h)
+    main.cpp Utils/sharedLib.cpp Controller/MainUIController.cpp Controller/MainUIController.h Controller/LoginUIController.cpp Controller/LoginUIController.h Controller/ManagerUIController.cpp Controller/ManagerUIController.h Controller/ClientUIController.cpp Controller/ClientUIController.h)
 
 add_executable(CS3307_Assignment1 ${SOURCE_FILES})

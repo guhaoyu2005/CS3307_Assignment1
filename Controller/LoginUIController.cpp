@@ -14,6 +14,7 @@ LoginUIController::~LoginUIController() {
 }
 
 Person* LoginUIController::login() {
+    system("Color 07");
     std::string uid;
     Person *p;
     while (1) {

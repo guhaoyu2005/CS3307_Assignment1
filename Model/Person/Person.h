@@ -27,8 +27,9 @@ public:
     ~Person();
 
 public:
-    static Person* readFromFile(std::string&);
-    static bool isExist(std::string&);
+    static Person* readFromFile(std::string);
+    static bool isExist(std::string);
+    static PersonType whichType(std::string);
 
 };
 

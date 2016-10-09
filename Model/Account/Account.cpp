@@ -69,6 +69,7 @@ bool Account::deposit(void* client, int amount, std::string &errMsg) {
         ((Client *)client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
                                            ":Deposit: "+sharedLib::strFromInt(amount)+
                                            " Balance: "+sharedLib::strFromInt(balance));
+        ((Client *)client)->writeToFile();
         return true;
     }
     else {
@@ -90,11 +91,12 @@ bool Account::transferReceive(void* srcClient, void* destClient, int amount, std
                                            ":Receive funds: "+sharedLib::strFromInt(amount)+
                                            " From :"+((Client*)srcClient)->getUid()+
                                            " Balance: "+sharedLib::strFromInt(balance));
+        ((Client *)destClient)->writeToFile();
         return true;
     }
     else {
         balance = verify;
-        errMsg = "Failed to deposit.";
+        errMsg = "verification failed.";
         return false;
     }
 }
@@ -111,6 +113,7 @@ bool Account::withdraw(void* client, int amount, std::string &errMsg) {
             ((Client *) client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat() +
                                                 ":Withdraw: " + sharedLib::strFromInt(amount) +
                                                 " Balance: " + sharedLib::strFromInt(balance));
+            ((Client *)client)->writeToFile();
             return true;
         }
         else {
@@ -120,7 +123,7 @@ bool Account::withdraw(void* client, int amount, std::string &errMsg) {
         }
     }
     else {
-        errMsg = "Failed to withdraw: insufficient funds.";
+        errMsg = "insufficient funds.";
         return false;
     }
 }
@@ -136,33 +139,35 @@ bool Account::transfer(void* srcClient, void* destClient, Account* destAccount, 
             int verifyDest = destAccount->getBalance();
             balance-=amount;
             std::string err;
-            bool res = destAccount->transferReceive(srcClient, destAccount, amount, err);
+            bool res = destAccount->transferReceive(srcClient, destClient, amount, err);
             if (res) {
                 if (verifyDest+amount == destAccount->getBalance() && verifySelf-amount == balance && balance>=0) {
                     ((Client *)srcClient)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
                                                            ":Transfer funds: "+sharedLib::strFromInt(amount)+
                                                            " To :"+((Client*)destClient)->getUid()+
                                                            " Balance: "+sharedLib::strFromInt(balance));
+                    ((Client *)srcClient)->writeToFile();
+                    ((Client *)destClient)->writeToFile();
                     return true;
                 }
                 else {
-                    errMsg = "Failed to transfer.";
+                    errMsg = "Verification failed.";
                     return false;
                 }
             }
             else {
-                errMsg = "Failed to transfer.";
+                errMsg = "Destination account rejected.";
                 balance = verifySelf;
                 return false;
             }
         }
         else {
-            errMsg = "Failed to transfer: insufficient funds.";
+            errMsg = "insufficient funds.";
             return false;
         }
     }
     else {
-        errMsg = "Failed to transfer: invalid target account.";
+        errMsg = "invalid target account.";
         return false;
     }
 }
