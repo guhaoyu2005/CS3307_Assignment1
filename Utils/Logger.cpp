@@ -44,6 +44,13 @@ void Logger::logwft(const void *func, const char* ptString) {
     }
 }
 
+std::string Logger::getTimeInLogFormat() {
+    char s[1000];
+    time_t t = time(NULL);
+    struct tm *p = localtime(&t);
+    strftime(s, 1000, "[%A, %b %d %Y %X]", p);
+    return s;
+}
 
 
 

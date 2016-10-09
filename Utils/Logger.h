@@ -5,6 +5,8 @@
 #ifndef BANK_LOGGER_H
 #define BANK_LOGGER_H
 
+#include <string>
+
 class Logger {
 public:
     static Logger& sharedInstance() {
@@ -23,6 +25,8 @@ public:
     void logwt(const char*);
     //log with function name and time
     void logwft(const void*, const char*);
+
+    std::string getTimeInLogFormat();
 
 private:
     Logger();

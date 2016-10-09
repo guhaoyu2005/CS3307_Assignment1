@@ -80,6 +80,7 @@ bool Client::writeToFile() {
         out<<transactions[i]<<std::endl;
     }
     out.close();
+    return true;
 }
 
 void Client::addTransaction(std::string tr) {

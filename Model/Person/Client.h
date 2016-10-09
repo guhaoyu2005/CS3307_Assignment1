@@ -27,6 +27,9 @@ public:
     int getSummaryBalance();
 
 public:
+    std::string getUid() { return uid; }
+
+public:
     std::vector<std::string> transactions;
     Chequing *chequing;
     Saving *saving;

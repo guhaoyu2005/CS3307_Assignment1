@@ -6,75 +6,142 @@
 #include "../../Utils/constants.h"
 #include "../../Utils/headers.h"
 
-Manager::Manager(std::string& id, std::string& pwd, int clientNum) {
+Manager::Manager(std::string& id, std::string& pwd) {
     uid = id;
     password = pwd;
-    clientCount = clientNum;
 }
 
 Manager::~Manager() {
-
+    clients.clear();
 }
 
 std::vector<std::string> Manager::listClients() {
-    std::ifstream in;
-    in.open(("/Data/"+uid+".user").c_str());
-    std::vector<std::string> clients;
-    std::string userId;
-    std::string pwd;
-    int type;
-    int clientNum;
-    in>>userId>>pwd>>type;
-    in>>clientNum;
-    std::string client;
-    while (!in.eof()) {
-        client = "";
-        in>>client;
-        clients.push_back(client);
-    }
-    in.close();
     return clients;
 }
 
-bool Manager::createClient(std::string& uid, std::string& pwd) {
+bool Manager::createClient(std::string& uid, std::string& pwd, std::string& errMsg) {
+    std::ifstream in;
+    in.open("./Data/"+uid+".uid");
+    if (!in) {
+        Client *newClient = new Client(uid, pwd);
+        newClient->writeToFile();
+        clients.push_back(uid);
+        writeToFile();
+        delete newClient;
+        return true;
+    }
+    else {
+        in.close();
+        errMsg = "User ID already used.";
+        return false;
+    }
+}
+
+bool Manager::createChquingForClient(std::string& id, std::string& errMsg) {
+    std::ofstream in;
+    in.open("./Data/"+uid+".user");
+    if (in) {
+        in.close();
+        Client *client = Client::readFromFile(id);
+        bool r = client->createAccount(Account::AccountType::Chequing, errMsg);
+        delete client;
+        return r;
+    }
+    else {
+        errMsg = "User ID doesn't exist.";
+        return false;
+    }
 
 }
 
-bool Manager::createChquingForClient(Client *) {
-
+bool Manager::createSavingForClient(std::string& id, std::string& errMsg) {
+    std::ofstream in;
+    in.open("./Data/"+uid+".user");
+    if (in) {
+        in.close();
+        Client *client = Client::readFromFile(id);
+        bool r = client->createAccount(Account::AccountType::Saving, errMsg);
+        delete client;
+        return r;
+    }
+    else {
+        errMsg = "User ID doesn't exist.";
+        return false;
+    }
 }
 
-bool Manager::createSavingForClient(Client *) {
-
+std::vector<std::vector<int>> Manager::listClientAccounts(std::string& id, std::string& errMsg) {
+    std::ofstream in;
+    in.open("./Data/"+uid+".user");
+    if (in) {
+        in.close();
+        Client *client = Client::readFromFile(id);
+        std::vector<std::vector<int>> r;
+        if (client->chequing->isOpen())
+            r.push_back({0, client->chequing->getBalance()});
+        if (client->saving->isOpen())
+            r.push_back({1, client->saving->getBalance()});
+        delete client;
+        return r;
+    }
+    else {
+        errMsg = "User ID doesn't exist.";
+        return {};
+    }
 }
 
-std::vector<Account>& Manager::listClientAccounts(Client *) {
-
-}
-
-bool Manager::deleteClientAccount(Client *, int) {
-
+bool Manager::deleteClientAccount(std::string& id, int type, std::string& errMsg) {
+    std::ofstream in;
+    in.open("./Data/"+uid+".user");
+    if (in) {
+        in.close();
+        Client *client = Client::readFromFile(id);
+        bool r= 0;
+        if (type == 0)
+            r = client->chequing->close(errMsg);
+        else
+            r = client->saving->close(errMsg);
+        delete client;
+        return r;
+    }
+    else {
+        errMsg = "User ID doesn't exist.";
+        return false;
+    }
 }
 
 bool Manager::writeToFile() {
-
+    std::ofstream out;
+    out.open(("./Data/"+uid+".uif").c_str());
+    out<<uid<<" "<<password<<" "<<PersonType::manager<<std::endl;
+    for (int i=0;i<clients.size();i++)
+        out<<clients[i]<<std::endl;
+    out.close();
+    return true;
 }
 
 Manager* Manager::readFromFile(std::string& id) {
     std::ifstream in;
-    in.open(("/Data/"+id+".user").c_str());
+    in.open(("./Data/"+id+".uif").c_str());
     std::string userId;
     std::string pwd;
     int type;
     int clientNum;
     in>>userId>>pwd>>type;
-    in>>clientNum;
-    in.close();
-    if (id == userId && type == Person::PersonType::manager) {
-        Manager *instance = new Manager(id, pwd, clientNum);
+    if (id == userId && type == PersonType::manager) {
+        Manager *instance = new Manager(id, pwd);
+        std::string client;
+        while (!in.eof()) {
+            client = "";
+            in>>client;
+            if (client!="")
+                instance->clients.push_back(client);
+        }
+        in.close();
         return instance;
     }
     else {
+        in.close();
         return NULL;
     }
 }

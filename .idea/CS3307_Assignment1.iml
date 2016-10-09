@@ -17,9 +17,14 @@
       <sourceFolder url="file://$MODULE_DIR$/Model/Person/Client.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model/Person/Service.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller/ManagerUIController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller/LoginUIController.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller/ManagerUIController.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller/LoginUIController.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller/MainUIController.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Controller/MainUIController.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/FileManager.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/FileManager.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utils/sharedLib.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Utils/Logger.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Utils/sharedLib.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Utils/Logger.cpp" isTestSource="false" />

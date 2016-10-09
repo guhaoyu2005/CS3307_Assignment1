@@ -3,6 +3,9 @@
 //
 
 #include "Account.h"
+#include "../../Utils/sharedLib.h"
+#include "../../Utils/Logger.h"
+#include "../../Utils/headers.h"
 
 Account::Account() {
     balance = 0;
@@ -55,7 +58,7 @@ Account::AccountType Account::getType() {
     return accountType;
 }
 
-bool Account::deposit(int amount, std::string &errMsg) {
+bool Account::deposit(void* client, int amount, std::string &errMsg) {
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
@@ -63,6 +66,9 @@ bool Account::deposit(int amount, std::string &errMsg) {
     int verify = balance;
     balance+=amount;
     if (balance == verify+amount){
+        ((Client *)client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
+                                           ":Deposit: "+sharedLib::strFromInt(amount)+
+                                           " Balance: "+sharedLib::strFromInt(balance));
         return true;
     }
     else {
@@ -72,7 +78,28 @@ bool Account::deposit(int amount, std::string &errMsg) {
     }
 }
 
-bool Account::withdraw(int amount, std::string &errMsg) {
+bool Account::transferReceive(void* srcClient, void* destClient, int amount, std::string &errMsg) {
+    if (!states) {
+        errMsg = "This account doesn't exist.";
+        return false;
+    }
+    int verify = balance;
+    balance+=amount;
+    if (balance == verify+amount){
+        ((Client *)destClient)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
+                                           ":Receive funds: "+sharedLib::strFromInt(amount)+
+                                           " From :"+((Client*)srcClient)->getUid()+
+                                           " Balance: "+sharedLib::strFromInt(balance));
+        return true;
+    }
+    else {
+        balance = verify;
+        errMsg = "Failed to deposit.";
+        return false;
+    }
+}
+
+bool Account::withdraw(void* client, int amount, std::string &errMsg) {
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
@@ -80,8 +107,12 @@ bool Account::withdraw(int amount, std::string &errMsg) {
     if (amount<=balance) {
         int verify = balance;
         balance-=amount;
-        if (balance == verify-amount && balance>=0)
+        if (balance == verify-amount && balance>=0) {
+            ((Client *) client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat() +
+                                                ":Withdraw: " + sharedLib::strFromInt(amount) +
+                                                " Balance: " + sharedLib::strFromInt(balance));
             return true;
+        }
         else {
             errMsg = "Failed to withdraw.";
             balance = verify;
@@ -94,7 +125,7 @@ bool Account::withdraw(int amount, std::string &errMsg) {
     }
 }
 
-bool Account::transfer(Account* destAccount, int amount, std::string &errMsg) {
+bool Account::transfer(void* srcClient, void* destClient, Account* destAccount, int amount, std::string &errMsg) {
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
@@ -105,9 +136,13 @@ bool Account::transfer(Account* destAccount, int amount, std::string &errMsg) {
             int verifyDest = destAccount->getBalance();
             balance-=amount;
             std::string err;
-            bool res = destAccount->deposit(amount, err);
+            bool res = destAccount->transferReceive(srcClient, destAccount, amount, err);
             if (res) {
                 if (verifyDest+amount == destAccount->getBalance() && verifySelf-amount == balance && balance>=0) {
+                    ((Client *)srcClient)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
+                                                           ":Transfer funds: "+sharedLib::strFromInt(amount)+
+                                                           " To :"+((Client*)destClient)->getUid()+
+                                                           " Balance: "+sharedLib::strFromInt(balance));
                     return true;
                 }
                 else {

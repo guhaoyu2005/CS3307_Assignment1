@@ -10,15 +10,15 @@
 
 class Manager : protected Person {
 public:
-    Manager(std::string& , std::string&, int);
+    Manager(std::string& , std::string&);
     ~Manager();
 public:
     std::vector<std::string> listClients();
-    bool createClient(std::string& , std::string&);
-    bool createChquingForClient(Client *);
-    bool createSavingForClient(Client *);
-    std::vector<Account>& listClientAccounts(Client *);
-    bool deleteClientAccount(Client *, int);
+    bool createClient(std::string&, std::string&, std::string&);
+    bool createChquingForClient(std::string&, std::string&);
+    bool createSavingForClient(std::string&, std::string&);
+    std::vector<std::vector<int>> listClientAccounts(std::string&, std::string&);
+    bool deleteClientAccount(std::string&, int, std::string&);
 
 public:
     bool writeToFile();
@@ -27,8 +27,7 @@ public:
     static Manager* readFromFile(std::string&);
 
 private:
-    int clientCount;
-
+    std::vector<std::string> clients;
 };
 
 

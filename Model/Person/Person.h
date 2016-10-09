@@ -25,6 +25,11 @@ public:
 public:
     Person();
     ~Person();
+
+public:
+    static Person* readFromFile(std::string&);
+    static bool isExist(std::string&);
+
 };
 
 
