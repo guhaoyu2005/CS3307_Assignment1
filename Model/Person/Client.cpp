@@ -19,6 +19,7 @@ Client::~Client() {
 }
 
 bool Client::createAccount(Account::AccountType t, std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::string err;
     switch (t) {
         case Account::AccountType::Chequing: {
@@ -45,6 +46,7 @@ bool Client::createAccount(Account::AccountType t, std::string& errMsg) {
 }
 
 bool Client::deleteAccount(Account::AccountType t, std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::string err;
     switch (t) {
         case Account::AccountType::Chequing: {
@@ -71,6 +73,7 @@ bool Client::deleteAccount(Account::AccountType t, std::string& errMsg) {
 }
 
 bool Client::writeToFile() {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream out;
     out.open("./Data/"+uid+".uif");
     out<<uid<<" "<<password<<" "<<PersonType::client<<std::endl;
@@ -84,15 +87,18 @@ bool Client::writeToFile() {
 }
 
 void Client::addTransaction(std::string tr) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (tr!="")
         transactions.push_back(tr);
 }
 
 int Client::getSummaryBalance() {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     return (chequing->isOpen()?chequing->getBalance():0)+(saving->isOpen()?saving->getBalance():0);
 }
 
 Client* Client::readFromFile(std::string id) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     std::string userId;

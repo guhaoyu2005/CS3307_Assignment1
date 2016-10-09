@@ -16,6 +16,7 @@ Person::~Person() {
 }
 
 Person* Person::readFromFile(std::string id) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     std::string userId;
@@ -31,6 +32,7 @@ Person* Person::readFromFile(std::string id) {
 }
 
 bool Person::isExist(std::string id) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     if (!in) {
@@ -41,6 +43,7 @@ bool Person::isExist(std::string id) {
 }
 
 Person::PersonType Person::whichType(std::string id) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     if (!in) {

@@ -16,10 +16,12 @@ Manager::~Manager() {
 }
 
 std::vector<std::string> Manager::listClients() {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     return clients;
 }
 
 bool Manager::createClient(std::string uid, std::string pwd, std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ifstream in;
     in.open("./Data/"+uid+".uid");
     if (!in) {
@@ -38,6 +40,7 @@ bool Manager::createClient(std::string uid, std::string pwd, std::string& errMsg
 }
 
 bool Manager::createChquingForClient(std::string id, std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream in;
     in.open("./Data/"+uid+".user");
     if (in) {
@@ -55,6 +58,7 @@ bool Manager::createChquingForClient(std::string id, std::string& errMsg) {
 }
 
 bool Manager::createSavingForClient(std::string id, std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream in;
     in.open("./Data/"+uid+".user");
     if (in) {
@@ -71,6 +75,7 @@ bool Manager::createSavingForClient(std::string id, std::string& errMsg) {
 }
 
 std::vector<std::vector<int>> Manager::listClientAccounts(std::string id, std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream in;
     in.open("./Data/"+uid+".user");
     if (in) {
@@ -91,6 +96,7 @@ std::vector<std::vector<int>> Manager::listClientAccounts(std::string id, std::s
 }
 
 bool Manager::deleteClientAccount(std::string id, int type, std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream in;
     in.open("./Data/"+uid+".user");
     if (in) {
@@ -111,6 +117,7 @@ bool Manager::deleteClientAccount(std::string id, int type, std::string& errMsg)
 }
 
 bool Manager::writeToFile() {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream out;
     out.open(("./Data/"+uid+".uif").c_str());
     out<<uid<<" "<<password<<" "<<PersonType::manager<<std::endl;
@@ -121,6 +128,7 @@ bool Manager::writeToFile() {
 }
 
 Manager* Manager::readFromFile(std::string id) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ifstream in;
     in.open(("./Data/"+id+".uif").c_str());
     std::string userId;

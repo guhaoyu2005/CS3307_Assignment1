@@ -24,7 +24,7 @@ public:
     //log with time
     void logwt(const char*);
     //log with function name and time
-    void logwft(const void*, const char*);
+    void logwft(const char*, int, const char*, const char*);
 
     std::string getTimeInLogFormat();
 
@@ -33,6 +33,9 @@ private:
     ~Logger();
     Logger(const Logger&);
     Logger& operator=(const Logger&);
+
+private:
+    void printToFile(std::string);
 };
 
 

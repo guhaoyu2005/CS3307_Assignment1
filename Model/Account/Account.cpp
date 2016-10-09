@@ -18,10 +18,12 @@ Account::~Account() {
 }
 
 int Account::getBalance() {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     return balance;
 }
 
 bool Account::open(std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         balance = 0;
         states = true;
@@ -34,6 +36,7 @@ bool Account::open(std::string& errMsg) {
 }
 
 bool Account::close(std::string& errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (states) {
         if (balance==0) {
             states = false;
@@ -51,14 +54,17 @@ bool Account::close(std::string& errMsg) {
 }
 
 bool Account::isOpen() {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     return states;
 }
 
 Account::AccountType Account::getType() {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     return accountType;
 }
 
 bool Account::deposit(void* client, int amount, std::string &errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
@@ -80,6 +86,7 @@ bool Account::deposit(void* client, int amount, std::string &errMsg) {
 }
 
 bool Account::transferReceive(void* srcClient, void* destClient, int amount, std::string &errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
@@ -102,6 +109,7 @@ bool Account::transferReceive(void* srcClient, void* destClient, int amount, std
 }
 
 bool Account::withdraw(void* client, int amount, std::string &errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
@@ -129,6 +137,7 @@ bool Account::withdraw(void* client, int amount, std::string &errMsg) {
 }
 
 bool Account::transfer(void* srcClient, void* destClient, Account* destAccount, int amount, std::string &errMsg) {
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;

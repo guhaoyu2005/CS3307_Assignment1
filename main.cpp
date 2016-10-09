@@ -51,7 +51,7 @@ int main() {
     }
     std::cout << "Bank" << std::endl;
     Logger::sharedInstance().setTraceMode(true);
-    Logger::sharedInstance().logwt("System initialized.");
+    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"System initialized.");
     while (1) {
         MainUIController *ui = new MainUIController();
         ui->init();

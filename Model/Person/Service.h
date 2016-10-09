@@ -8,7 +8,19 @@
 #include "Person.h"
 
 class Service : protected Person {
+public:
+    Service();
+    ~Service();
 
+public:
+    void setTracelog(bool);
+    bool getTracelog();
+
+public:
+    bool writeToFile();
+
+public:
+    static Service* readFromFile(std::string);
 };
 
 

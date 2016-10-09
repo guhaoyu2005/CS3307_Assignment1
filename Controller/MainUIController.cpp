@@ -7,6 +7,7 @@
 #include "LoginUIController.h"
 #include "ManagerUIController.h"
 #include "ClientUIController.h"
+#include "ServiceUIController.h"
 
 LoginUIController *loginUICtl;
 
@@ -28,11 +29,6 @@ void MainUIController::init() {
     user = loginUICtl->login();
     loadMainMenu();
     delete loginUICtl;
-     /*
-    std::string s = "123456";
-    user = Person::readFromFile(s);
-    loadMainMenu();
-      */
 }
 
 void MainUIController::loadMainMenu() {
@@ -50,6 +46,9 @@ void MainUIController::loadMainMenu() {
             break;
         }
         case Person::PersonType::service: {
+            ServiceUIController *sUiCtl = new ServiceUIController();
+            sUiCtl->init(user->uid);
+            delete sUiCtl;
             break;
         }
         default: {
