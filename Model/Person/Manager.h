@@ -17,8 +17,10 @@ public:
     bool createClient(std::string, std::string, std::string&);
     bool createChquingForClient(std::string, std::string&);
     bool createSavingForClient(std::string, std::string&);
-    std::vector<std::vector<int>> listClientAccounts(std::string, std::string&);
+    std::vector<std::vector<double>> listClientAccounts(std::string, std::string&);
     bool deleteClientAccount(std::string, int, std::string&);
+
+    std::string getBankSummery();
 
 public:
     bool writeToFile();

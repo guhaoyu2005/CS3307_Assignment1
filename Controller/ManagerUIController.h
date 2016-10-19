@@ -21,6 +21,7 @@ private:
     void createClient();
     void openAccount();
     void closeAccount();
+    void getBankSummary();
 
 private:
     Manager *manager;

@@ -13,17 +13,17 @@ Service::~Service() {
 }
 
 void Service::setTracelog(bool tl) {
-    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
+    Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
     Logger::sharedInstance().setTraceMode(tl);
 }
 
 bool Service::getTracelog() {
-    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
+    Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
    return Logger::sharedInstance().traceMode;
 }
 
 bool Service::writeToFile() {
-    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
+    Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream out;
     out.open(("./Data/"+uid+".uif").c_str());
     out<<uid<<" "<<password<<" "<<PersonType::service<<std::endl;
@@ -32,7 +32,7 @@ bool Service::writeToFile() {
 }
 
 Service* Service::readFromFile(std::string id) {
-    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
+    Logger::sharedInstance().logwuft(id.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ifstream in;
     in.open("./Data/"+id+".uif");
     std::string userId;

@@ -55,7 +55,7 @@ Person::PersonType Person::whichType(std::string id) {
         in>>a>>b>>t;
         in.close();
         return (PersonType)t;
-    }
+    } 
 }
 
 /*

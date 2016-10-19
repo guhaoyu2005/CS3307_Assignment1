@@ -62,7 +62,18 @@ void Logger::logwft(const char* file, int line, const char* func, const char* pt
         struct tm *p = localtime(&t);
         strftime(s, 1000, "%A, %b %d %Y %X", p);
         std::string ss = s;
-        printToFile("[" + ss + "]:In file \""+ file + "\" (line " + sharedLib::strFromInt(line) +") function \""+ func +"\" accessed. "+ptString+"\n");
+        printToFile("[" + ss + "]:"+ file + "\" (line " + sharedLib::strFromInt(line) +") function \""+ func +"\" accessed. "+ptString+"\n");
+    }
+}
+
+void Logger::logwuft(const char* user, const char* file, int line, const char* func, const char* ptString) {
+    if (traceMode) {
+        char s[1000];
+        time_t t = time(NULL);
+        struct tm *p = localtime(&t);
+        strftime(s, 1000, "%A, %b %d %Y %X", p);
+        std::string ss = s;
+        printToFile("[" + ss + "][ id: " + user + " ]:In file \""+ file + "\" (line " + sharedLib::strFromInt(line) +") function \""+ func +"\" accessed. "+ptString+"\n");
     }
 }
 

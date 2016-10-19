@@ -20,13 +20,13 @@ ClientUIController::~ClientUIController() {
 void ClientUIController::deposit() {
     system("cls");
     cout<<"===[<]==============Deposit==================="<<endl<<endl<<endl;
-    int fund = 0;
+    double fund = 0;
     while (1) {
         cout<<endl<<"Amount:";
         cin>>fund;
         if (fund>0) {
             break;
-        }
+        } 
         else {
             cout<<"Invalid amount!"<<endl;
         }

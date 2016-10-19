@@ -25,6 +25,8 @@ public:
     void logwt(const char*);
     //log with function name and time
     void logwft(const char*, int, const char*, const char*);
+    //log with username, function name and time
+    void logwuft(const char*, const char*, int, const char*, const char*);
 
     std::string getTimeInLogFormat();
 

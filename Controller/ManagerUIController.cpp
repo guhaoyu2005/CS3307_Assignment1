@@ -216,6 +216,14 @@ void ManagerUIController::closeAccount() {
     }
 }
 
+void ManagerUIController::getBankSummary() {
+    system("cls");
+    cout<<"===[<]==========Show Bank Summary============"<<endl<<endl<<endl;
+    cout<<manager->getBankSummery()<<endl;
+    cout<<endl<<"Press any key to continue."<<endl;
+    getch();
+}
+
 void ManagerUIController::drawMainMenu () {
     system("cls");
     cout<<" ===[ ]==============Main Menu================="<<endl;
@@ -224,7 +232,7 @@ void ManagerUIController::drawMainMenu () {
     cout<<"|         [2] Create Client                    |"<<endl;
     cout<<"|         [3] Open Account For Client          |"<<endl;
     cout<<"|         [4] Close Account For Client         |"<<endl;
-    cout<<"|                                              |"<<endl;
+    cout<<"|         [5] Show Bank Summary                |"<<endl;
     cout<<"|                                              |"<<endl;
     cout<<"|                                              |"<<endl;
     cout<<"|                                              |"<<endl;
@@ -264,6 +272,11 @@ void ManagerUIController::init(std::string uid) {
             }
             case '4': {
                 closeAccount();
+                drawMainMenu();
+                break;
+            }
+            case '5': {
+                getBankSummary();
                 drawMainMenu();
                 break;
             }

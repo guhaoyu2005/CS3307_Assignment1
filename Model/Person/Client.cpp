@@ -87,13 +87,13 @@ bool Client::writeToFile() {
 }
 
 void Client::addTransaction(std::string tr) {
-    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
+    Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
     if (tr!="")
         transactions.push_back(tr);
 }
 
 double Client::getSummaryBalance() {
-    Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
+    Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
     return (chequing->isOpen()?chequing->getBalance():0)+(saving->isOpen()?saving->getBalance():0);
 }
 
