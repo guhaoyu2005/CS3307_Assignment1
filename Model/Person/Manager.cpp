@@ -10,6 +10,7 @@
 Manager::Manager(std::string id, std::string pwd) {
     uid = id;
     password = pwd;
+    status = PersonStatus::normal;
 }
 
 Manager::~Manager() {
@@ -117,7 +118,24 @@ bool Manager::deleteClientAccount(std::string id, int type, std::string& errMsg)
     }
 }
 
-std::string Manager::getBankSummery() {
+bool Manager::setClientStatus(std::string id, PersonStatus ss, std::string& errMsg) {
+    Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
+    std::ofstream in;
+    in.open("./Data/"+uid+".user");
+    if (in) {
+        in.close();
+        Client *client = Client::readFromFile(id);
+        client->setStatus(ss);
+        delete client;
+        return true;
+    }
+    else {
+        errMsg = "User ID doesn't exist.";
+        return false;
+    }
+}
+
+std::string Manager::getBankSummary() {
     std::string r= "";
     double summaryChequing = 0;
     double summarySaving = 0;
@@ -137,7 +155,7 @@ bool Manager::writeToFile() {
     Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream out;
     out.open(("./Data/"+uid+".uif").c_str());
-    out<<uid<<" "<<password<<" "<<PersonType::manager<<std::endl;
+    out<<uid<<" "<<password<<" "<<PersonType::manager<<" 0"<<std::endl;
     for (int i=0;i<clients.size();i++)
         out<<clients[i]<<std::endl;
     out.close();
@@ -151,10 +169,11 @@ Manager* Manager::readFromFile(std::string id) {
     std::string userId;
     std::string pwd;
     int type;
-    int clientNum;
-    in>>userId>>pwd>>type;
+    int cStatus;
+    in>>userId>>pwd>>type>>cStatus;
     if (id == userId && type == PersonType::manager) {
         Manager *instance = new Manager(id, pwd);
+        instance->status = PersonStatus::normal;
         std::string client;
         while (!in.eof()) {
             client = "";

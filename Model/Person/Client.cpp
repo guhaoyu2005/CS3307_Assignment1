@@ -10,6 +10,7 @@ Client::Client(std::string id, std::string pwd) {
     password = pwd;
     chequing = new Chequing(0, 0);
     saving = new Saving(0, 0);
+    status = PersonStatus::normal;
 }
 
 Client::~Client() {
@@ -72,11 +73,26 @@ bool Client::deleteAccount(Account::AccountType t, std::string& errMsg) {
     return false;
 }
 
+void Client::setPassword(std::string pwd) {
+    password = pwd;
+}
+void Client::setStatus(PersonStatus ss) {
+    status = ss;
+}
+
+std::string Client::getPassword() {
+    return password;
+}
+
+Person::PersonStatus Client::getStatus() {
+    return status;
+}
+
 bool Client::writeToFile() {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream out;
     out.open("./Data/"+uid+".uif");
-    out<<uid<<" "<<password<<" "<<PersonType::client<<std::endl;
+    out<<uid<<" "<<password<<" "<<PersonType::client<<" "<<status<<std::endl;
     out<<Account::AccountType::Chequing<<" "<<chequing->isOpen()<<" "<<chequing->getBalance()<<std::endl;
     out<<Account::AccountType::Saving<<" "<<saving->isOpen()<<" "<<saving->getBalance()<<std::endl;
     for (int i=0;i<transactions.size();i++) {
@@ -104,8 +120,10 @@ Client* Client::readFromFile(std::string id) {
     std::string userId;
     std::string pwd;
     int type;
-    in>>userId>>pwd>>type;
+    int cStatus;
+    in>>userId>>pwd>>type>>cStatus;
     Client *instance = new Client(userId, pwd);
+    instance->status = (PersonStatus)cStatus;
     for (int i=0;i<2;i++) {
         int typeA;
         bool state = 0;

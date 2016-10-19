@@ -22,11 +22,13 @@ Person* Person::readFromFile(std::string id) {
     std::string userId;
     std::string pwd;
     int type;
-    in>>userId>>pwd>>type;
+    int cStatus;
+    in>>userId>>pwd>>type>>cStatus;
     Person *instance = new Person();
     instance->uid = userId;
     instance->password = pwd;
     instance->type = (Person::PersonType)type;
+    instance->status = (Person::PersonStatus)cStatus;
     in.close();
     return instance;
 }
@@ -55,7 +57,7 @@ Person::PersonType Person::whichType(std::string id) {
         in>>a>>b>>t;
         in.close();
         return (PersonType)t;
-    } 
+    }
 }
 
 /*

@@ -9,7 +9,7 @@ bool genDefaultAccounts() {
     if (!in) {
         in.close();
         out.open("./Data/manager.uif");
-        out<<"manager manager 0"<<std::endl;
+        out<<"manager manager 0 0"<<std::endl;
         out.close();
     }
     else
@@ -19,7 +19,7 @@ bool genDefaultAccounts() {
     if (!in) {
         in.close();
         out.open("./Data/service.uif");
-        out<<"service service 2"<<std::endl;
+        out<<"service service 2 0"<<std::endl;
         out.close();
     }
     else

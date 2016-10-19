@@ -19,6 +19,8 @@ public:
 
 private:
     void drawMainMenu();
+    void clearLogFile();
+    void drawAutoClearMenu(int);
 
 private:
     Service *service;

@@ -26,7 +26,7 @@ bool Service::writeToFile() {
     Logger::sharedInstance().logwuft(uid.c_str(),__FILE__, __LINE__, __FUNCTION__ ,"");
     std::ofstream out;
     out.open(("./Data/"+uid+".uif").c_str());
-    out<<uid<<" "<<password<<" "<<PersonType::service<<std::endl;
+    out<<uid<<" "<<password<<" "<<PersonType::service<<" 0"<<std::endl;
     out.close();
     return true;
 }
@@ -38,11 +38,13 @@ Service* Service::readFromFile(std::string id) {
     std::string userId;
     std::string pwd;
     int type;
-    in>>userId>>pwd>>type;
+    int cStatus;
+    in>>userId>>pwd>>type>>cStatus;
     Service *instance = new Service();
     instance->uid = userId;
     instance->password = pwd;
     instance->type = (Person::PersonType)type;
+    instance->status = PersonStatus::normal;
     in.close();
     return instance;
 }

@@ -22,6 +22,8 @@ private:
     void openAccount();
     void closeAccount();
     void getBankSummary();
+    void setClientStatus();
+    void resetClientPassword();
 
 private:
     Manager *manager;

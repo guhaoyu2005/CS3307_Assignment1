@@ -84,12 +84,31 @@ void Logger::printToFile(std::string s) {
     out.close();
 }
 
+void Logger::resetLogFile() {
+    std::ofstream out;
+    out.open("tracelog.log");
+    out<<"";
+    out.close();
+}
+
 std::string Logger::getTimeInLogFormat() {
     char s[1000];
     time_t t = time(NULL);
     struct tm *p = localtime(&t);
     strftime(s, 1000, "[%A, %b %d %Y %X]", p);
     return s;
+}
+
+int Logger::getLogFileSize() {
+    int r=0;
+    std::ifstream in;
+    in.open("tracelog.log");
+    if (in) {
+        in.seekg(0, std::ios::end);
+        r = in.tellg();
+    }
+    in.close();
+    return r;
 }
 
 

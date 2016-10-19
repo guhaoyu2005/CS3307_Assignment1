@@ -29,6 +29,10 @@ public:
     void logwuft(const char*, const char*, int, const char*, const char*);
 
     std::string getTimeInLogFormat();
+    int getLogFileSize();
+
+public:
+    void resetLogFile();
 
 private:
     Logger();

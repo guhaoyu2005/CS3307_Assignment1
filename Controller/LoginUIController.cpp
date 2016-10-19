@@ -4,6 +4,7 @@
 
 #include "LoginUIController.h"
 #include "../Utils/headers.h"
+#include "../Model/Person/Client.h"
 
 LoginUIController::LoginUIController() {
 
@@ -55,7 +56,12 @@ Person* LoginUIController::login() {
             std::cout<<std::endl<<"Password incorrect."<<std::endl;
         }
     }
-    std::cout<<"Too many attempts."<<std::endl<<"Authorization failed. Application halt."<<std::endl;
+    if (p->type==Person::PersonType::client) {
+        Client *pp = Client::readFromFile(uid);
+        pp->setStatus(Person::PersonStatus::blocked);
+        pp->writeToFile();
+    }
+    std::cout<<"Too many attempts."<<std::endl<<"Authorization failed."<<std::endl<<std::endl<<(p->type==Person::PersonType::client?"Due to security policy, your account will be blocked. Please contact your manager for assistance.":"")<<std::endl<<"Application halt."<<std::endl;
     getch();
     exit(-1);
     return NULL;

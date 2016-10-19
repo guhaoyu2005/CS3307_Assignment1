@@ -18,11 +18,14 @@ public:
     void init(std::string);
 
 private:
+    void drawBlockedMenu();
     void drawMainMenu();
     void deposit();
     void withdraw();
     void transfer();
     void viewTransactions();
+
+    void changePassword();
 
 private:
     Client *client;

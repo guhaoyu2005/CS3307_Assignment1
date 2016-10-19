@@ -26,7 +26,7 @@ void ClientUIController::deposit() {
         cin>>fund;
         if (fund>0) {
             break;
-        } 
+        }
         else {
             cout<<"Invalid amount!"<<endl;
         }
@@ -520,6 +520,60 @@ void ClientUIController::viewTransactions() {
     getch();
 }
 
+void ClientUIController::changePassword() {
+    system("cls");
+    cout<<"===[<]===========Change Password=============="<<endl<<endl<<endl;
+    string cpwd, pwd1, pwd2;
+    int wrongCount = 0;
+    bool finish = false;
+    while (1) {
+        cout<<"Input your current password:";
+        cin>>cpwd;
+        if (cpwd == client->getPassword()) {
+            while (1) {
+                cout<<"Password(Length>="<< MIN_USER_PWD_LENGTH <<"): ";
+                cin>>pwd1;
+                if (pwd1.length()<MIN_USER_PWD_LENGTH) {
+                    cout<<"Password is too short."<<"(Need "<< MIN_USER_PWD_LENGTH <<", actual "<<pwd1.length()<<")"<<endl;
+                }
+                else {
+                    cout<<"Confirm: ";
+                    cin>>pwd2;
+                    if (pwd1==pwd2) {
+                        string err;
+                        client->setPassword(pwd1);
+                        if (client->writeToFile()) {
+                            cout<<"Success!"<<endl<<"Press any key to continue."<<endl;
+                        }
+                        else {
+                            cout<<"Failed to change password because "<<err<<endl<<"Press any key to continue."<<endl;
+                        }
+                        finish = true;
+                        getch();
+                        break;
+                    }
+                    else {
+                        cout<<"Password does not match!"<<endl;
+                    }
+                }
+            }
+        }
+        else {
+            cout<<"Incorrect password, try again."<<endl;
+            wrongCount++;
+            if (wrongCount==3) {
+                cout<<"Too many wrong attempts."<<endl;
+                getch();
+                finish = true;
+                break;
+            }
+        }
+        if (finish)
+            break;
+    }
+
+}
+
 void ClientUIController::drawMainMenu() {
     system("cls");
     cout<<" ===[ ]==============Main Menu================="<<endl;
@@ -528,7 +582,7 @@ void ClientUIController::drawMainMenu() {
     cout<<"|         [2] Withdraw                         |"<<endl;
     cout<<"|         [3] Transfer                         |"<<endl;
     cout<<"|         [4] View Transactions                |"<<endl;
-    cout<<"|                                              |"<<endl;
+    cout<<"|         [5] Change password                  |"<<endl;
     cout<<"|                                              |"<<endl;
     cout<<"|                                              |"<<endl;
     cout<<"|                                              |"<<endl;
@@ -539,6 +593,34 @@ void ClientUIController::drawMainMenu() {
     cout<<" =============================================="<<endl;
 }
 
+void ClientUIController::drawBlockedMenu() {
+    system("cls");
+    cout<<" ===[ ]==============Main Menu================="<<endl;
+    cout<<"|                                              |"<<endl;
+    cout<<"|                                              |"<<endl;
+    cout<<"|    Due to our security policy,               |"<<endl;
+    cout<<"|      your account was blocked.               |"<<endl;
+    cout<<"|                                              |"<<endl;
+    cout<<"|    Please contact your manager               |"<<endl;
+    cout<<"|      for assistance.                         |"<<endl;
+    cout<<"|                                              |"<<endl;
+    cout<<"|                                              |"<<endl;
+    cout<<"|         [9] Logoff                           |"<<endl;
+    cout<<"|         [0] Quit                             |"<<endl;
+    cout<<"|                                              |"<<endl;
+    cout<<"|                                              |"<<endl;
+    cout<<" =============================================="<<endl;
+    while (1) {
+        char c = getch();
+        if (c=='9') {
+            break;
+        }
+        else if (c=='0') {
+            exit(0);
+        }
+    }
+}
+
 void ClientUIController::init(std::string uid) {
     if (!client)
         client = Client::readFromFile(uid);
@@ -546,40 +628,50 @@ void ClientUIController::init(std::string uid) {
         sharedLib::errorHalt();
     }
     system("color 1E");
-    drawMainMenu();
-    bool endSession = 0;
-    while (1) {
-        char c = getch();
-        switch (c) {
-            case '1': {
-                deposit();
-                drawMainMenu();
+    if (client->getStatus()==Person::PersonStatus::normal) {
+        drawMainMenu();
+        bool endSession = 0;
+        while (1) {
+            char c = getch();
+            switch (c) {
+                case '1': {
+                    deposit();
+                    drawMainMenu();
+                    break;
+                }
+                case '2': {
+                    withdraw();
+                    drawMainMenu();
+                    break;
+                }
+                case '3': {
+                    transfer();
+                    drawMainMenu();
+                    break;
+                }
+                case '4': {
+                    viewTransactions();
+                    drawMainMenu();
+                    break;
+                }
+                case '5': {
+                    changePassword();
+                    drawMainMenu();
+                    break;
+                }
+                case '9': {
+                    endSession = 1;
+                    break;
+                }
+                case '0': {
+                    exit(0);
+                }
+            }
+            if (endSession)
                 break;
-            }
-            case '2': {
-                withdraw();
-                drawMainMenu();
-                break;
-            }
-            case '3': {
-                transfer();
-                drawMainMenu();
-                break;
-            }
-            case '4': {
-                viewTransactions();
-                drawMainMenu();
-                break;
-            }
-            case '9': {
-                endSession = 1;
-                break;
-            }
-            case '0': {
-                exit(0);
-            }
         }
-        if (endSession)
-            break;
+    }
+    else {
+        drawBlockedMenu();
     }
 }

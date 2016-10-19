@@ -19,8 +19,9 @@ public:
     bool createSavingForClient(std::string, std::string&);
     std::vector<std::vector<double>> listClientAccounts(std::string, std::string&);
     bool deleteClientAccount(std::string, int, std::string&);
+    bool setClientStatus(std::string, PersonStatus, std::string&);
 
-    std::string getBankSummery();
+    std::string getBankSummary();
 
 public:
     bool writeToFile();

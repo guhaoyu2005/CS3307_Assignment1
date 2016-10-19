@@ -27,6 +27,13 @@ public:
     double getSummaryBalance();
 
 public:
+    std::string getPassword();
+    PersonStatus getStatus();
+public:
+    void setPassword(std::string);
+    void setStatus(PersonStatus);
+
+public:
     std::string getUid() { return uid; }
 
 public:
