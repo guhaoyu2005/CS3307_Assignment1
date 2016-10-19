@@ -10,9 +10,10 @@
 class Chequing : public Account {
 
 public:
-    Chequing(int, bool);
+    Chequing(double, bool);
     ~Chequing();
-
+public:
+    bool shouldShowErrorMessgage(double, std::string&);
 };
 
 

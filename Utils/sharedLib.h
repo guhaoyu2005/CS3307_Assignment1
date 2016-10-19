@@ -12,7 +12,7 @@
 
 class sharedLib {
 public:
-    static std::string strFromInt(int);
+    static std::string strFromInt(double);
     static void errorHalt();
 };
 

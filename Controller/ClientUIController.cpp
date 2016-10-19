@@ -75,7 +75,7 @@ void ClientUIController::deposit() {
 void ClientUIController::withdraw() {
     system("cls");
     cout<<"===[<]=============Withdraw==================="<<endl<<endl<<endl;
-    int fund = 0;
+    double fund = 0;
     while (1) {
         cout<<endl<<"Amount:";
         cin>>fund;
@@ -93,13 +93,34 @@ void ClientUIController::withdraw() {
         char c= getch();
         if (c=='1') {
             if (client->chequing->isOpen()) {
-                if (client->chequing->withdraw(client, fund, err)) {
-                    cout<<"Success!"<<endl<<endl<<"Balance: "<<client->chequing->getBalance()<<endl;
-                    getch();
-                    break;
+                bool doWithdraw= false;
+                if (client->chequing->shouldShowErrorMessgage(fund, err)) {
+                    while (1) {
+                        cout<<err<<endl;
+                        cout<<"[1] Continue"<<endl<<endl<<"[0] Cancel"<<endl;
+                        char ccLevy = getch();
+                        if (ccLevy=='1') {
+                            fund+=2;
+                            doWithdraw = true;
+                            break;
+                        }
+                        else if (ccLevy=='0'){
+                            break;
+                        }
+                    }
                 }
                 else {
-                    cout<<"Failed to withdraw funds from your chequing account because "<<err<<endl;
+                    doWithdraw = true;
+                }
+                if (doWithdraw) {
+                    if (client->chequing->withdraw(client, fund, err)) {
+                        cout<<"Success!"<<endl<<endl<<"Balance: "<<client->chequing->getBalance()<<endl;
+                        getch();
+                        break;
+                    }
+                    else {
+                        cout<<"Failed to withdraw funds from your chequing account because "<<err<<endl;
+                    }
                 }
             }
             else {
@@ -130,7 +151,7 @@ void ClientUIController::withdraw() {
 void ClientUIController::transfer() {
     system("cls");
     cout<<"===[<]=============Transfer==================="<<endl<<endl<<endl;
-    int fund = 0;
+    double fund = 0;
     while (1) {
         cout<<endl<<"Amount:";
         cin>>fund;
@@ -163,15 +184,37 @@ void ClientUIController::transfer() {
                                 cout<<"You cannot transfer funds to same account!"<<endl;
                             }
                             else if (ccc=='2') {
-                                if (client->chequing->transfer(client, client, client->saving, fund, err)) {
-                                    toWhomFlag = 1;
-                                    fromAccountFlag = 1;
-                                    cout<<"Success!"<<endl<<endl<<"Balance: "<<client->chequing->getBalance()<<endl;
-                                    getch();
-                                    break;
+                                bool doWithdraw= false;
+                                double fundExtra = 0;
+                                if (client->chequing->shouldShowErrorMessgage(fund, err)) {
+                                    while (1) {
+                                        cout<<err<<endl;
+                                        cout<<"[1] Continue"<<endl<<endl<<"[0] Cancel"<<endl;
+                                        char ccLevy = getch();
+                                        if (ccLevy=='1') {
+                                            fundExtra = 2;
+                                            doWithdraw = true;
+                                            break;
+                                        }
+                                        else if (ccLevy=='0'){
+                                            break;
+                                        }
+                                    }
                                 }
                                 else {
-                                    cout<<"Failed to transfer funds because "<<err<<endl<<endl;
+                                    doWithdraw = true;
+                                }
+                                if (doWithdraw) {
+                                    if (client->chequing->transfer(client, client, client->saving, fund+fundExtra, fund, err)) {
+                                        toWhomFlag = 1;
+                                        fromAccountFlag = 1;
+                                        cout<<"Success!"<<endl<<endl<<"Balance: "<<client->chequing->getBalance()<<endl;
+                                        getch();
+                                        break;
+                                    }
+                                    else {
+                                        cout<<"Failed to transfer funds because "<<err<<endl<<endl;
+                                    }
                                 }
                             }
                             else if (ccc=='0') {
@@ -198,32 +241,77 @@ void ClientUIController::transfer() {
                                         cout<<"[1] Chequing"<<endl<<"[2] Saving"<<endl<<endl<<"[0] Back"<<endl;
                                         char ccc= getch();
                                         if (ccc=='1') {
-                                            if (client->chequing->transfer(client, dct, dct->chequing,fund, err)) {
-                                                toWhomFlag = 1;
-                                                toWhichClientFlag = 1;
-                                                fromAccountFlag = 1;
-                                                cout<<"Success!"<<endl<<endl<<"Balance: "<<client->chequing->getBalance()<<endl;
-                                                getch();
-                                                break;
+                                            double fundExtra = 0;
+                                            bool doWithdraw= false;
+                                            if (client->chequing->shouldShowErrorMessgage(fund, err)) {
+                                                while (1) {
+                                                    cout<<err<<endl;
+                                                    cout<<"[1] Continue"<<endl<<endl<<"[0] Cancel"<<endl;
+                                                    char ccLevy = getch();
+                                                    if (ccLevy=='1') {
+                                                        fundExtra=2;
+                                                        doWithdraw = true;
+                                                        break;
+                                                    }
+                                                    else if (ccLevy=='0'){
+                                                        break;
+                                                    }
+                                                }
                                             }
                                             else {
-                                                cout<<"Failed to transfer funds because "<<err<<endl<<endl;
+                                                doWithdraw = true;
+                                            }
+                                            if (doWithdraw) {
+                                                if (client->chequing->transfer(client, dct, dct->chequing, fund+fundExtra, fund, err)) {
+                                                    toWhomFlag = 1;
+                                                    toWhichClientFlag = 1;
+                                                    fromAccountFlag = 1;
+                                                    cout << "Success!" << endl << endl << "Balance: "
+                                                         << client->chequing->getBalance() << endl;
+                                                    getch();
+                                                    break;
+                                                } else {
+                                                    cout << "Failed to transfer funds because " << err << endl << endl;
+                                                }
                                             }
                                         }
                                         else if (ccc=='2') {
-                                            if (client->chequing->transfer(client, dct, dct->saving,fund, err)) {
-                                                toWhomFlag = 1;
-                                                toWhichClientFlag = 1;
-                                                fromAccountFlag = 1;
-                                                cout<<"Success!"<<endl<<endl<<"Balance: "<<client->chequing->getBalance()<<endl;
-                                                getch();
-                                                break;
+                                            double fundExtra = 0;
+                                            bool doWithdraw= false;
+                                            if (client->chequing->shouldShowErrorMessgage(fund, err)) {
+                                                while (1) {
+                                                    cout<<err<<endl;
+                                                    cout<<"[1] Continue"<<endl<<endl<<"[0] Cancel"<<endl;
+                                                    char ccLevy = getch();
+                                                    if (ccLevy=='1') {
+                                                        fundExtra=2;
+                                                        doWithdraw = true;
+                                                        break;
+                                                    }
+                                                    else if (ccLevy=='0'){
+                                                        break;
+                                                    }
+                                                }
                                             }
                                             else {
-                                                cout<<"Failed to transfer funds because "<<err<<endl<<endl;
+                                                doWithdraw = true;
+                                            }
+                                            if (doWithdraw) {
+                                                if (client->chequing->transfer(client, dct, dct->saving, fund+fundExtra, fund, err)) {
+                                                    toWhomFlag = 1;
+                                                    toWhichClientFlag = 1;
+                                                    fromAccountFlag = 1;
+                                                    cout << "Success!" << endl << endl << "Balance: "
+                                                         << client->chequing->getBalance() << endl;
+                                                    getch();
+                                                    break;
+                                                } else {
+                                                    cout << "Failed to transfer funds because " << err << endl << endl;
+                                                }
                                             }
                                         }
                                         else if (ccc=='0') {
+                                            toWhichClientFlag = 1;
                                             break;
                                         }
                                     }
@@ -265,15 +353,37 @@ void ClientUIController::transfer() {
                             cout << "[1] Chequing" << endl << "[2] Saving" << endl << endl << "[0] Back" << endl;
                             char ccc = getch();
                             if (ccc == '1') {
-                                if (client->saving->transfer(client, client, client->chequing, fund, err)) {
-                                    toWhomFlag = 1;
-                                    fromAccountFlag = 1;
-                                    cout << "Success!" << endl << endl << "Balance: " << client->saving->getBalance()
-                                         << endl;
-                                    getch();
-                                    break;
-                                } else {
-                                    cout << "Failed to transfer funds because " << err << endl << endl;
+                                double fundExtra = 0;
+                                bool doWithdraw= false;
+                                if (client->chequing->shouldShowErrorMessgage(fund, err)) {
+                                    while (1) {
+                                        cout<<err<<endl;
+                                        cout<<"[1] Continue"<<endl<<endl<<"[0] Cancel"<<endl;
+                                        char ccLevy = getch();
+                                        if (ccLevy=='1') {
+                                            fundExtra=2;
+                                            doWithdraw = true;
+                                            break;
+                                        }
+                                        else if (ccLevy=='0'){
+                                            break;
+                                        }
+                                    }
+                                }
+                                else {
+                                    doWithdraw = true;
+                                }
+                                if (doWithdraw) {
+                                    if (client->saving->transfer(client, client, client->chequing, fund+fundExtra, fund, err)) {
+                                        toWhomFlag = 1;
+                                        fromAccountFlag = 1;
+                                        cout << "Success!" << endl << endl << "Balance: " << client->saving->getBalance()
+                                             << endl;
+                                        getch();
+                                        break;
+                                    } else {
+                                        cout << "Failed to transfer funds because " << err << endl << endl;
+                                    }
                                 }
                             } else if (ccc == '2') {
                                 cout << "You cannot transfer funds to same account!" << endl;
@@ -298,30 +408,75 @@ void ClientUIController::transfer() {
                                              << endl;
                                         char ccc = getch();
                                         if (ccc == '1') {
-                                            if (client->saving->transfer(client, dct, dct->chequing, fund, err)) {
-                                                toWhomFlag = 1;
-                                                toWhichClientFlag = 1;
-                                                fromAccountFlag = 1;
-                                                cout << "Success!" << endl << endl << "Balance: "
-                                                     << client->saving->getBalance() << endl;
-                                                getch();
-                                                break;
-                                            } else {
-                                                cout << "Failed to transfer funds because " << err << endl << endl;
+                                            double fundExtra = 0;
+                                            bool doWithdraw= false;
+                                            if (client->chequing->shouldShowErrorMessgage(fund, err)) {
+                                                while (1) {
+                                                    cout<<err<<endl;
+                                                    cout<<"[1] Continue"<<endl<<endl<<"[0] Cancel"<<endl;
+                                                    char ccLevy = getch();
+                                                    if (ccLevy=='1') {
+                                                        fundExtra=2;
+                                                        doWithdraw = true;
+                                                        break;
+                                                    }
+                                                    else if (ccLevy=='0'){
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            else {
+                                                doWithdraw = true;
+                                            }
+                                            if (doWithdraw) {
+                                                if (client->saving->transfer(client, dct, dct->chequing, fund+fundExtra, fund, err)) {
+                                                    toWhomFlag = 1;
+                                                    toWhichClientFlag = 1;
+                                                    fromAccountFlag = 1;
+                                                    cout << "Success!" << endl << endl << "Balance: "
+                                                         << client->saving->getBalance() << endl;
+                                                    getch();
+                                                    break;
+                                                } else {
+                                                    cout << "Failed to transfer funds because " << err << endl << endl;
+                                                }
                                             }
                                         } else if (ccc == '2') {
-                                            if (client->saving->transfer(client, dct, dct->saving, fund, err)) {
-                                                toWhomFlag = 1;
-                                                toWhichClientFlag = 1;
-                                                fromAccountFlag = 1;
-                                                cout << "Success!" << endl << endl << "Balance: "
-                                                     << client->saving->getBalance() << endl;
-                                                getch();
-                                                break;
-                                            } else {
-                                                cout << "Failed to transfer funds because " << err << endl << endl;
+                                            double fundExtra = 0;
+                                            bool doWithdraw= false;
+                                            if (client->chequing->shouldShowErrorMessgage(fund, err)) {
+                                                while (1) {
+                                                    cout<<err<<endl;
+                                                    cout<<"[1] Continue"<<endl<<endl<<"[0] Cancel"<<endl;
+                                                    char ccLevy = getch();
+                                                    if (ccLevy=='1') {
+                                                        fundExtra=2;
+                                                        doWithdraw = true;
+                                                        break;
+                                                    }
+                                                    else if (ccLevy=='0'){
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            else {
+                                                doWithdraw = true;
+                                            }
+                                            if (doWithdraw) {
+                                                if (client->saving->transfer(client, dct, dct->saving, fund+fundExtra, fund, err)) {
+                                                    toWhomFlag = 1;
+                                                    toWhichClientFlag = 1;
+                                                    fromAccountFlag = 1;
+                                                    cout << "Success!" << endl << endl << "Balance: "
+                                                         << client->saving->getBalance() << endl;
+                                                    getch();
+                                                    break;
+                                                } else {
+                                                    cout << "Failed to transfer funds because " << err << endl << endl;
+                                                }
                                             }
                                         } else if (ccc == '0') {
+                                            toWhichClientFlag = 1;
                                             break;
                                         }
                                     }

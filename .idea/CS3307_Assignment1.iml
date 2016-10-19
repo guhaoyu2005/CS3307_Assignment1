@@ -13,12 +13,6 @@
       <sourceFolder url="file://$MODULE_DIR$/Controller/ServiceUIController.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Controller/ClientUIController.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/sharedLib.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/Logger.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/sharedLib.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/Logger.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/headers.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/Utils/constants.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model/Account/Chequing.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model/Account/Saving.h" isTestSource="false" />
@@ -34,19 +28,27 @@
       <sourceFolder url="file://$MODULE_DIR$/Model/Person/Person.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model/Person/Client.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Model/Person/Service.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utils/sharedLib.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utils/Logger.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utils/sharedLib.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utils/Logger.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utils/headers.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utils/constants.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library name="Header Search Paths">
         <CLASSES>
-          <root url="file://C:/MinGW/lib/gcc/mingw32/4.8.1/include" />
-          <root url="file://C:/MinGW/lib/gcc/mingw32/4.8.1/include-fixed" />
-          <root url="file://C:/MinGW/include" />
+          <root url="file://F:/MinGW/lib/gcc/mingw32/5.3.0/include" />
+          <root url="file://F:/MinGW/lib/gcc/mingw32/5.3.0/include-fixed" />
+          <root url="file://F:/MinGW/mingw32/include" />
+          <root url="file://F:/MinGW/include" />
         </CLASSES>
         <SOURCES>
-          <root url="file://C:/MinGW/lib/gcc/mingw32/4.8.1/include" />
-          <root url="file://C:/MinGW/lib/gcc/mingw32/4.8.1/include-fixed" />
-          <root url="file://C:/MinGW/include" />
+          <root url="file://F:/MinGW/lib/gcc/mingw32/5.3.0/include" />
+          <root url="file://F:/MinGW/lib/gcc/mingw32/5.3.0/include-fixed" />
+          <root url="file://F:/MinGW/mingw32/include" />
+          <root url="file://F:/MinGW/include" />
         </SOURCES>
       </library>
     </orderEntry>

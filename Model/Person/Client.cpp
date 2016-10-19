@@ -92,7 +92,7 @@ void Client::addTransaction(std::string tr) {
         transactions.push_back(tr);
 }
 
-int Client::getSummaryBalance() {
+double Client::getSummaryBalance() {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     return (chequing->isOpen()?chequing->getBalance():0)+(saving->isOpen()?saving->getBalance():0);
 }
@@ -109,7 +109,7 @@ Client* Client::readFromFile(std::string id) {
     for (int i=0;i<2;i++) {
         int typeA;
         bool state = 0;
-        int bal = 0;
+        double bal = 0;
         in>>typeA>>state>>bal;
         std::string err;
         if (typeA == Account::AccountType::Chequing) {

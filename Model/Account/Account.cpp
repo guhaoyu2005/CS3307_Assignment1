@@ -17,7 +17,7 @@ Account::~Account() {
 
 }
 
-int Account::getBalance() {
+double Account::getBalance() {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     return balance;
 }
@@ -63,13 +63,13 @@ Account::AccountType Account::getType() {
     return accountType;
 }
 
-bool Account::deposit(void* client, int amount, std::string &errMsg) {
+bool Account::deposit(void* client, double amount, std::string &errMsg) {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
     }
-    int verify = balance;
+    double verify = balance;
     balance+=amount;
     if (balance == verify+amount){
         ((Client *)client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
@@ -85,13 +85,13 @@ bool Account::deposit(void* client, int amount, std::string &errMsg) {
     }
 }
 
-bool Account::transferReceive(void* srcClient, void* destClient, int amount, std::string &errMsg) {
+bool Account::transferReceive(void* srcClient, void* destClient, double amount, std::string &errMsg) {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
     }
-    int verify = balance;
+    double verify = balance;
     balance+=amount;
     if (balance == verify+amount){
         ((Client *)destClient)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
@@ -108,14 +108,14 @@ bool Account::transferReceive(void* srcClient, void* destClient, int amount, std
     }
 }
 
-bool Account::withdraw(void* client, int amount, std::string &errMsg) {
+bool Account::withdraw(void* client, double amount, std::string &errMsg) {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
     }
     if (amount<=balance) {
-        int verify = balance;
+        double verify = balance;
         balance-=amount;
         if (balance == verify-amount && balance>=0) {
             ((Client *) client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat() +
@@ -136,23 +136,23 @@ bool Account::withdraw(void* client, int amount, std::string &errMsg) {
     }
 }
 
-bool Account::transfer(void* srcClient, void* destClient, Account* destAccount, int amount, std::string &errMsg) {
+bool Account::transfer(void* srcClient, void* destClient, Account* destAccount, double amountWithdraw, double amountDeposit, std::string &errMsg) {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
         errMsg = "This account doesn't exist.";
         return false;
     }
     if (destAccount) {
-        if (balance>= amount) {
-            int verifySelf = balance;
-            int verifyDest = destAccount->getBalance();
-            balance-=amount;
+        if (balance>= amountWithdraw) {
+            double verifySelf = balance;
+            double verifyDest = destAccount->getBalance();
+            balance-=amountWithdraw;
             std::string err;
-            bool res = destAccount->transferReceive(srcClient, destClient, amount, err);
+            bool res = destAccount->transferReceive(srcClient, destClient, amountDeposit, err);
             if (res) {
-                if (verifyDest+amount == destAccount->getBalance() && verifySelf-amount == balance && balance>=0) {
+                if (verifyDest+amountDeposit == destAccount->getBalance() && verifySelf-amountWithdraw == balance && balance>=0) {
                     ((Client *)srcClient)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
-                                                           ":Transfer funds: "+sharedLib::strFromInt(amount)+
+                                                           ":Transfer funds: "+sharedLib::strFromInt(amountDeposit)+
                                                            " To :"+((Client*)destClient)->getUid()+
                                                            " Balance: "+sharedLib::strFromInt(balance));
                     ((Client *)srcClient)->writeToFile();

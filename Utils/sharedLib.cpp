@@ -6,7 +6,7 @@
 #include <sstream>
 #include <conio.h>
 
-std::string sharedLib::strFromInt(int n) {
+std::string sharedLib::strFromInt(double n) {
     std::ostringstream ss;
     ss << n;
     return ss.str();

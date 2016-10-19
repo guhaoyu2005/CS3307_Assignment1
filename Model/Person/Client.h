@@ -24,7 +24,7 @@ public:
 
     void addTransaction(std::string);
 
-    int getSummaryBalance();
+    double getSummaryBalance();
 
 public:
     std::string getUid() { return uid; }
