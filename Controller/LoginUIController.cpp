@@ -49,6 +49,8 @@ Person* LoginUIController::login() {
             }
         }
         if (p->password == pwd) {
+            std::string msg = "User [ " + p->uid + " ] login.";
+            Logger::sharedInstance().logwt(msg.c_str());
             return p;
         }
         else {

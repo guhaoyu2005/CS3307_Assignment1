@@ -11,9 +11,10 @@
     </ADDITIONAL_GENERATION_ENVIRONMENT>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1f10ba0-5688-4013-a398-fe6609b1fd16" name="Default" comment="Changed tracelog file size recommend size to 1MB">
+    <list default="true" id="b1f10ba0-5688-4013-a398-fe6609b1fd16" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/Account/Account.cpp" afterPath="$PROJECT_DIR$/Model/Account/Account.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/LoginUIController.cpp" afterPath="$PROJECT_DIR$/Controller/LoginUIController.cpp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.cpp" afterPath="$PROJECT_DIR$/main.cpp" />
     </list>
     <ignored path="CS3307_Assignment1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,31 +34,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ManagerUIController.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/ManagerUIController.cpp">
+      <file leaf-file-name="MainUIController.cpp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Controller/MainUIController.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="56" column="76" selection-start-line="55" selection-start-column="4" selection-end-line="56" selection-end-column="76" />
+            <state relative-caret-position="294">
+              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServiceUIController.cpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Controller/ServiceUIController.cpp">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Account.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Model/Account/Account.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="156" column="104" selection-start-line="156" selection-start-column="104" selection-end-line="156" selection-end-column="104" />
+            <state relative-caret-position="336">
+              <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -86,9 +77,7 @@
         <option value="$PROJECT_DIR$/Model/Account/Account.h" />
         <option value="$PROJECT_DIR$/Model/Person/Person.h" />
         <option value="$PROJECT_DIR$/Model/Person/Person.cpp" />
-        <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/Model/Person/Service.cpp" />
-        <option value="$PROJECT_DIR$/Controller/LoginUIController.cpp" />
         <option value="$PROJECT_DIR$/Model/Person/Client.h" />
         <option value="$PROJECT_DIR$/Model/Person/Client.cpp" />
         <option value="$PROJECT_DIR$/Controller/ClientUIController.h" />
@@ -103,6 +92,8 @@
         <option value="$PROJECT_DIR$/Controller/ServiceUIController.cpp" />
         <option value="$PROJECT_DIR$/Utils/constants.h" />
         <option value="$PROJECT_DIR$/Model/Account/Account.cpp" />
+        <option value="$PROJECT_DIR$/Controller/LoginUIController.cpp" />
+        <option value="$PROJECT_DIR$/main.cpp" />
       </list>
     </option>
   </component>
@@ -428,7 +419,7 @@
       <workItem from="1476039611530" duration="8000" />
       <workItem from="1476903276976" duration="4335000" />
       <workItem from="1476907652985" duration="8080000" />
-      <workItem from="1476918986078" duration="2819000" />
+      <workItem from="1476918986078" duration="3601000" />
     </task>
     <task id="LOCAL-00001" summary="Added basic UI and implemented the models">
       <created>1475979991852</created>
@@ -465,11 +456,18 @@
       <option name="project" value="LOCAL" />
       <updated>1476919202482</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Solved double data type problem when comparing">
+      <created>1476923389018</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1476923389018</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73140000" />
+    <option name="totallyTimeSpent" value="73922000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -513,7 +511,8 @@
     <MESSAGE value="Added function for manager to overview the whole banking system&#10;Fixed account balance from int to double" />
     <MESSAGE value="Added password self-change ability for clients&#10;Added auto safety lock for clients&#10;Added tips for too large tracelog file&#10;Added tracelog clear function for service&#10;Added client status changing function for manager&#10;" />
     <MESSAGE value="Changed tracelog file size recommend size to 1MB" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed tracelog file size recommend size to 1MB" />
+    <MESSAGE value="Solved double data type problem when comparing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Solved double data type problem when comparing" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -682,26 +681,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/MainUIController.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="14" column="38" selection-start-line="14" selection-start-column="38" selection-end-line="14" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Model/Account/Saving.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -741,6 +724,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -749,16 +733,6 @@
         <state relative-caret-position="-265">
           <caret line="90" column="28" selection-start-line="90" selection-start-column="28" selection-end-line="90" selection-end-column="28" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/LoginUIController.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="58" column="33" selection-start-line="58" selection-start-column="33" selection-end-line="58" selection-end-column="33" />
-          <folding>
-            <element signature="e#45#75#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -824,34 +798,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Utils/Logger.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="687">
-          <caret line="110" column="13" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/ManagerUIController.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="56" column="76" selection-start-line="55" selection-start-column="4" selection-end-line="56" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Utils/constants.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="17" column="38" selection-start-line="17" selection-start-column="38" selection-end-line="17" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Controller/ServiceUIController.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
           <folding />
         </state>
       </provider>
@@ -874,8 +824,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Model/Account/Account.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="156" column="104" selection-start-line="156" selection-start-column="104" selection-end-line="156" selection-end-column="104" />
+        <state relative-caret-position="470">
+          <caret line="155" column="74" selection-start-line="155" selection-start-column="74" selection-end-line="155" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/ServiceUIController.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="70" column="67" selection-start-line="70" selection-start-column="67" selection-end-line="70" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/ManagerUIController.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-105">
+          <caret line="56" column="76" selection-start-line="55" selection-start-column="4" selection-end-line="56" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Utils/Logger.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1541">
+          <caret line="110" column="13" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/LoginUIController.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="53" column="21" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Controller/MainUIController.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="57" column="18" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
           <folding />
         </state>
       </provider>

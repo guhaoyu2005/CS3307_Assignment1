@@ -57,6 +57,7 @@ int main() {
         ui->init();
         delete ui;
         ui = NULL;
+        Logger::sharedInstance().logwt("Current user session ended.\n");
     }
 
 /*
