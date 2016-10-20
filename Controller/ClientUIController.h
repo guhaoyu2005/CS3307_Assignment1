@@ -24,6 +24,7 @@ private:
     void withdraw();
     void transfer();
     void viewTransactions();
+    void viewBalance();
 
     void changePassword();
 

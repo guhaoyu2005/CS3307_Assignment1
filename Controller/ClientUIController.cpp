@@ -520,6 +520,16 @@ void ClientUIController::viewTransactions() {
     getch();
 }
 
+void ClientUIController::viewBalance() {
+    system("cls");
+    cout<<"===[<]=========View Balance==================="<<endl<<endl<<endl;
+    cout<<"  Total Balance:"<<client->getSummaryBalance()<<endl;
+    cout<<"   Chequing:  States: "<<(client->chequing->isOpen()?"Valid":"Invalid")<<"  Balance: "<<client->chequing->getBalance()<<endl;
+    cout<<"   Saving:    States: "<<(client->saving->isOpen()?"Valid":"Invalid")<<"  Balance: "<<client->saving->getBalance()<<endl;
+    cout<<endl<<"Press any key to continue";
+    getch();
+}
+
 void ClientUIController::changePassword() {
     system("cls");
     cout<<"===[<]===========Change Password=============="<<endl<<endl<<endl;
@@ -583,7 +593,7 @@ void ClientUIController::drawMainMenu() {
     cout<<"|         [3] Transfer                         |"<<endl;
     cout<<"|         [4] View Transactions                |"<<endl;
     cout<<"|         [5] Change password                  |"<<endl;
-    cout<<"|                                              |"<<endl;
+    cout<<"|         [6] View Balance                     |"<<endl;
     cout<<"|                                              |"<<endl;
     cout<<"|                                              |"<<endl;
     cout<<"|         [9] Logoff                           |"<<endl;
@@ -656,6 +666,11 @@ void ClientUIController::init(std::string uid) {
                 }
                 case '5': {
                     changePassword();
+                    drawMainMenu();
+                    break;
+                }
+                case '6': {
+                    viewBalance();
                     drawMainMenu();
                     break;
                 }
