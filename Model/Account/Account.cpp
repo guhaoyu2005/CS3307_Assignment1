@@ -8,8 +8,8 @@
 #include "../../Utils/headers.h"
 
 Account::Account() {
-    balance = 0;
-    states = 0;
+    balance = 0.0;
+    states = 0.0;
     accountType = Account::AccountType::Unknown;
 }
 
@@ -25,7 +25,7 @@ double Account::getBalance() {
 bool Account::open(std::string& errMsg) {
     Logger::sharedInstance().logwft(__FILE__, __LINE__, __FUNCTION__ ,"");
     if (!states) {
-        balance = 0;
+        balance = 0.0;
         states = true;
         return true;
     }
@@ -71,7 +71,7 @@ bool Account::deposit(void* client, double amount, std::string &errMsg) {
     }
     double verify = balance;
     balance+=amount;
-    if (balance == verify+amount){
+    if (abs(balance-verify-amount)<0.00001){
         ((Client *)client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
                                            ":Deposit: "+sharedLib::strFromInt(amount)+
                                            " Balance: "+sharedLib::strFromInt(balance));
@@ -93,7 +93,7 @@ bool Account::transferReceive(void* srcClient, void* destClient, double amount, 
     }
     double verify = balance;
     balance+=amount;
-    if (balance == verify+amount){
+    if (abs(balance-verify-amount)<0.00001){
         ((Client *)destClient)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
                                            ":Receive funds: "+sharedLib::strFromInt(amount)+
                                            " From :"+((Client*)srcClient)->getUid()+
@@ -117,7 +117,7 @@ bool Account::withdraw(void* client, double amount, std::string &errMsg) {
     if (amount<=balance) {
         double verify = balance;
         balance-=amount;
-        if (balance == verify-amount && balance>=0) {
+        if (abs(balance-verify-amount)<0.00001 && balance>=0) {
             ((Client *) client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat() +
                                                 ":Withdraw: " + sharedLib::strFromInt(amount) +
                                                 " Balance: " + sharedLib::strFromInt(balance));
@@ -150,7 +150,7 @@ bool Account::transfer(void* srcClient, void* destClient, Account* destAccount, 
             std::string err;
             bool res = destAccount->transferReceive(srcClient, destClient, amountDeposit, err);
             if (res) {
-                if (verifyDest+amountDeposit == destAccount->getBalance() && verifySelf-amountWithdraw == balance && balance>=0) {
+                if ((verifyDest+amountDeposit-destAccount->getBalance())<0.00001 && (verifySelf-amountWithdraw-balance)<0.00001 && balance>=0) {
                     ((Client *)srcClient)->addTransaction(Logger::sharedInstance().getTimeInLogFormat()+
                                                            ":Transfer funds: "+sharedLib::strFromInt(amountDeposit)+
                                                            " To :"+((Client*)destClient)->getUid()+
