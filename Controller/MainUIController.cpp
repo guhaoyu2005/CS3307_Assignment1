@@ -25,7 +25,7 @@ MainUIController::~MainUIController() {
 void MainUIController::init() {
     system("cls");
 
-    printf("Welcome to CS3307 Bank System\n");
+    printf("Welcome to CS3307 Banking System\n");
     user = loginUICtl->login();
     loadMainMenu();
     delete loginUICtl;
