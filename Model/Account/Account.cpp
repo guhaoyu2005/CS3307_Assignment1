@@ -117,7 +117,7 @@ bool Account::withdraw(void* client, double amount, std::string &errMsg) {
     if (amount<=balance) {
         double verify = balance;
         balance-=amount;
-        if (abs(balance-verify-amount)<0.00001 && balance>=0) {
+        if (abs(balance-verify+amount)<0.00001 && balance>=0) {
             ((Client *) client)->addTransaction(Logger::sharedInstance().getTimeInLogFormat() +
                                                 ":Withdraw: " + sharedLib::strFromInt(amount) +
                                                 " Balance: " + sharedLib::strFromInt(balance));

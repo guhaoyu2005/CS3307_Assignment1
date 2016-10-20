@@ -13,8 +13,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b1f10ba0-5688-4013-a398-fe6609b1fd16" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/ClientUIController.cpp" afterPath="$PROJECT_DIR$/Controller/ClientUIController.cpp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller/ClientUIController.h" afterPath="$PROJECT_DIR$/Controller/ClientUIController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Model/Account/Account.cpp" afterPath="$PROJECT_DIR$/Model/Account/Account.cpp" />
     </list>
     <ignored path="CS3307_Assignment1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,14 +33,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ClientUIController.cpp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Controller/ClientUIController.cpp">
+      <file leaf-file-name="Account.cpp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Model/Account/Account.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="671" column="23" selection-start-line="671" selection-start-column="23" selection-end-line="671" selection-end-column="23" />
-              <folding>
-                <element signature="e#45#76#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="281">
+              <caret line="95" column="19" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -81,11 +78,11 @@
         <option value="$PROJECT_DIR$/Utils/Logger.cpp" />
         <option value="$PROJECT_DIR$/Controller/ServiceUIController.cpp" />
         <option value="$PROJECT_DIR$/Utils/constants.h" />
-        <option value="$PROJECT_DIR$/Model/Account/Account.cpp" />
         <option value="$PROJECT_DIR$/Controller/LoginUIController.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
         <option value="$PROJECT_DIR$/Controller/ClientUIController.h" />
         <option value="$PROJECT_DIR$/Controller/ClientUIController.cpp" />
+        <option value="$PROJECT_DIR$/Model/Account/Account.cpp" />
       </list>
     </option>
   </component>
@@ -411,7 +408,7 @@
       <workItem from="1476039611530" duration="8000" />
       <workItem from="1476903276976" duration="4335000" />
       <workItem from="1476907652985" duration="8080000" />
-      <workItem from="1476918986078" duration="3864000" />
+      <workItem from="1476918986078" duration="4124000" />
     </task>
     <task id="LOCAL-00001" summary="Added basic UI and implemented the models">
       <created>1475979991852</created>
@@ -462,11 +459,18 @@
       <option name="project" value="LOCAL" />
       <updated>1476924153376</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added entry for client to check their balance&#10;">
+      <created>1476924416734</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1476924416734</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74185000" />
+    <option name="totallyTimeSpent" value="74445000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1056" extended-state="6" />
@@ -512,7 +516,8 @@
     <MESSAGE value="Changed tracelog file size recommend size to 1MB" />
     <MESSAGE value="Solved double data type problem when comparing" />
     <MESSAGE value="Added user login trace in logger&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added user login trace in logger&#10;" />
+    <MESSAGE value="Added entry for client to check their balance&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added entry for client to check their balance&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -802,14 +807,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Model/Account/Account.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="155" column="74" selection-start-line="155" selection-start-column="74" selection-end-line="155" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Controller/ServiceUIController.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -868,11 +865,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Controller/ClientUIController.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="671" column="23" selection-start-line="671" selection-start-column="23" selection-end-line="671" selection-end-column="23" />
+        <state relative-caret-position="554">
+          <caret line="655" column="17" selection-start-line="655" selection-start-column="17" selection-end-line="655" selection-end-column="17" />
           <folding>
             <element signature="e#45#76#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Model/Account/Account.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="95" column="19" selection-start-line="95" selection-start-column="19" selection-end-line="95" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
