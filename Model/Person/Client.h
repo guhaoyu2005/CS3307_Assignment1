@@ -9,14 +9,14 @@
 
 class Client : protected Person {
 public:
-    Client(std::string& , std::string&);
+    Client(std::string, std::string);
     ~Client();
 
 public:
     bool writeToFile();
 
 public:
-    static Client* readFromFile(std::string&);
+    static Client* readFromFile(std::string);
 
 public:
     bool createAccount(Account::AccountType, std::string&);
@@ -24,7 +24,17 @@ public:
 
     void addTransaction(std::string);
 
-    int getSummaryBalance();
+    double getSummaryBalance();
+
+public:
+    std::string getPassword();
+    PersonStatus getStatus();
+public:
+    void setPassword(std::string);
+    void setStatus(PersonStatus);
+
+public:
+    std::string getUid() { return uid; }
 
 public:
     std::vector<std::string> transactions;

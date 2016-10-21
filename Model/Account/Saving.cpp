@@ -4,7 +4,7 @@
 
 #include "Saving.h"
 
-Saving::Saving(int sBalance, bool open) {
+Saving::Saving(double sBalance, bool open) {
     balance = sBalance;
     states = open;
     accountType = Account::AccountType::Saving;

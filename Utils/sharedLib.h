@@ -8,6 +8,13 @@
 #include "../Model/Person/Client.h"
 #include "../Model/Person/Manager.h"
 #include "../Model/Person/Service.h"
+#include "headers.h"
+
+class sharedLib {
+public:
+    static std::string strFromInt(double);
+    static void errorHalt();
+};
 
 
 

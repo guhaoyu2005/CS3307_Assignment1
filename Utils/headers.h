@@ -10,7 +10,10 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <vector>
+#include <stdio.h>
+#include <conio.h>
 
 #include "Logger.h"
 

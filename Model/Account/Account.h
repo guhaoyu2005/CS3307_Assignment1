@@ -17,17 +17,18 @@ public:
     ~Account();
 
 public:
-    int getBalance();
+    double getBalance();
     AccountType getType();
-    bool deposit(int, std::string&);
-    bool withdraw(int, std::string&);
-    bool transfer(Account*, int, std::string&);
+    bool deposit(void*, double, std::string&);
+    bool withdraw(void*, double, std::string&);
+    bool transfer(void*, void*,Account*, double, double, std::string&);
+    bool transferReceive(void*, void*, double, std::string&);
     bool isOpen();
     bool open(std::string&);
     bool close(std::string&);
 
 protected:
-    int balance;
+    double balance;
     AccountType accountType;
     bool states;
 };
